@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>LAHC - Life and Health Company</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Para modo "app" en iOS y buen color en Android -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="LANHC">
+<meta name="theme-color" content="#0044cc">
+
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+background: #f5f5f7;
+color: #222;
+line-height: 1.5;
+}
+
+header {
+background: linear-gradient(135deg, #0044cc, #00a3ff);
+color: #fff;
+padding: 1.2rem 1.5rem;
+position: sticky;
+top: 0;
+z-index: 10;
+}
+
+.navbar {
+max-width: 1100px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+font-weight: 700;
+font-size: 1.05rem;
+letter-spacing: 0.04em;
+}
+
+.brand-logo {
+height: 95px;
+width: auto;
+}
+
+.brand-text-small {
+font-size: 0.65rem;
+font-weight: 400;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+opacity: 0.9;
+}
+
+.nav-links {
+display: flex;
+gap: 0.8rem;
+font-size: 0.9rem;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+
+.nav-links a {
+color: #e7f0ff;
+text-decoration: none;
+padding: 0.25rem 0.6rem;
+border-radius: 999px;
+transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+background: rgba(255, 255, 255, 0.16);
+color: #fff;
+}
+
+main {
+max-width: 1100px;
+margin: 1.5rem auto 3rem;
+padding: 0 1rem;
+}
+
+.hero {
+display: grid;
+grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+gap: 2rem;
+align-items: center;
+margin-bottom: 2.5rem;
+}
+
+.hero-title {
+font-size: 2rem;
+margin-bottom: 0.8rem;
+}
+
+.hero-subtitle {
+color: #555;
+margin-bottom: 1.2rem;
+font-size: 0.98rem;
+}
+
+.hero-highlight {
+display: inline-block;
+background: rgba(0, 68, 204, 0.08);
+color: #0044cc;
+padding: 0.2rem 0.7rem;
+border-radius: 999px;
+font-size: 0.8rem;
+margin-bottom: 0.6rem;
+}
+
+.hero-cta {
+display: flex;
+flex-wrap: wrap;
+gap: 0.7rem;
+margin-top: 0.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+border: none;
+padding: 0.6rem 1.1rem;
+border-radius: 999px;
+cursor: pointer;
+font-size: 0.9rem;
+font-weight: 500;
+transition: transform 0.1s, box-shadow 0.1s, background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+background: #0044cc;
+color: #fff;
+box-shadow: 0 8px 18px rgba(0, 68, 204, 0.35);
+}
+
+.btn-primary:hover {
+transform: translateY(-1px);
+box-shadow: 0 12px 24px rgba(0, 68, 204, 0.4);
+background: #0036a3;
+}
+
+.btn-secondary {
+background: #ffffff;
+color: #0044cc;
+border: 1px solid rgba(0, 68, 204, 0.2);
+}
+
+.btn-secondary:hover {
+background: #f0f3ff;
+}
+
+.hero-card {
+background: #ffffff;
+border-radius: 1.2rem;
+padding: 1.2rem 1rem;
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+font-size: 0.9rem;
+}
+
+.hero-card h3 {
+font-size: 1rem;
+margin-bottom: 0.3rem;
+}
+
+.hero-metric {
+display: flex;
+justify-content: space-between;
+margin-top: 0.3rem;
+}
+
+.hero-metric span:first-child {
+color: #777;
+font-size: 0.8rem;
+}
+
+.hero-metric span:last-child {
+font-weight: 600;
+}
+
+section {
+margin-bottom: 2.5rem;
+}
+
+section h2 {
+font-size: 1.35rem;
+margin-bottom: 0.6rem;
+}
+
+section p.section-intro {
+color: #555;
+margin-bottom: 1.2rem;
+font-size: 0.95rem;
+}
+
+.cards-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 1.2rem;
+}
+
+.card {
+background: #ffffff;
+border-radius: 1rem;
+padding: 1rem;
+box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+
+.badge {
+display: inline-block;
+font-size: 0.75rem;
+padding: 0.15rem 0.6rem;
+border-radius: 999px;
+background: #f0f3ff;
+color: #0044cc;
+font-weight: 500;
+margin-bottom: 0.2rem;
+}
+
+.card h3 {
+font-size: 1.05rem;
+margin-bottom: 0.2rem;
+}
+
+.card ul {
+margin-left: 1rem;
+font-size: 0.9rem;
+color: #555;
+}
+
+.card ul li {
+margin-bottom: 0.25rem;
+}
+
+.card-footer-text {
+font-size: 0.8rem;
+color: #777;
+margin-top: 0.2rem;
+}
+
+.question-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1rem;
+margin-bottom: 1rem;
+}
+
+label {
+display: block;
+font-size: 0.85rem;
+margin-bottom: 0.2rem;
+color: #444;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+textarea {
+width: 100%;
+padding: 0.5rem 0.6rem;
+border-radius: 0.6rem;
+border: 1px solid #d5d7dd;
+font-size: 0.9rem;
+outline: none;
+transition: border 0.2s, box-shadow 0.2s;
+background: #fbfbfc;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+border-color: #0044cc;
+box-shadow: 0 0 0 3px rgba(0, 68, 204, 0.12);
+background: #ffffff;
+}
+
+.result-box {
+margin-top: 1rem;
+padding: 0.9rem;
+border-radius: 0.9rem;
+background: #e7f4ff;
+border: 1px solid #c6e0ff;
+font-size: 0.9rem;
+display: none;
+}
+
+.result-title {
+font-weight: 600;
+margin-bottom: 0.2rem;
+color: #0044cc;
+}
+
+form {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1rem;
+margin-top: 1rem;
+}
+
+form .full-width {
+grid-column: 1 / -1;
+}
+
+.success-message {
+margin-top: 1rem;
+padding: 0.8rem;
+border-radius: 0.8rem;
+font-size: 0.9rem;
+background: #e8f9f0;
+border: 1px solid #b4e5c8;
+color: #16794c;
+display: none;
+}
+
+footer {
+text-align: center;
+font-size: 0.8rem;
+color: #777;
+margin-bottom: 1.5rem;
+}
+
+footer span {
+font-weight: 500;
+}
+
+@media (max-width: 800px) {
+.hero {
+grid-template-columns: 1fr;
+}
+
+header {
+position: static;
+}
+
+.navbar {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.hero-title {
+font-size: 1.6rem;
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="navbar">
+<div class="brand">
+<img src="logo-lanhc.jpeg" alt="LAHC Life and Health Company" class="brand-logo">
+<div>
+<div>LAHC</div>
+<div class="brand-text-small">Life and Health Company</div>
+</div>
+</div>
+<nav class="nav-links">
+<a href="#nosotros">Nosotros</a>
+<a href="#productos">Productos</a>
+<a href="#seguro-ideal">Seguro ideal</a>
+<a href="#cotizador">Simula tu prima</a>
+<a href="#contrata">Contrata</a>
+</nav>
+</div>
+</header>
+
+<main>
+<!-- NOSOTROS / HERO -->
+<section class="hero" id="nosotros">
+<div>
+<div class="hero-highlight">Life and Health Company · Proyecto LAHC</div>
+<h1 class="hero-title">Tu cartera de vida en una app sencilla.</h1>
+<p class="hero-subtitle">
+Somos <strong>LAHC (Life And Health Company)</strong>, una aseguradora que se destaca por proteger lo más valioso de nuestros clientes: proteger su futuro.
+Con nosotros tienes la experiencia de contratar un seguro de vida con un solo click.
+</p>
+<p class="hero-subtitle">
+En esta app puedes conocer quiénes somos, explorar nuestros productos
+(Temporal, Dotal Mixto y Vitalicio), encontrar tu <strong>seguro ideal</strong>
+y simular tu prima neta.
+</p>
+<div class="hero-cta">
+<button class="btn-primary" onclick="document.getElementById('seguro-ideal').scrollIntoView({behavior:'smooth'})">
+Encontrar mi seguro ideal
+</button>
+<button class="btn-secondary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
+Ver productos
+</button>
+</div>
+</div>
+
+<div class="hero-card">
+<h3>Nuestra cartera digital</h3>
+<p>Simulación de cartera de seguros de vida de LAHC:</p>
+<div class="hero-metric">
+<span>Seguros disponibles</span>
+<span>3</span>
+</div>
+<div class="hero-metric">
+<span>Tipos de producto</span>
+<span>Temporal, Dotal Mixto, Vitalicio</span>
+</div>
+<div class="hero-metric">
+<span>Cálculo de prima</span>
+<span>PNU + anualidad</span>
+</div>
+</div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+<h2>Nuestros productos</h2>
+<p class="section-intro">
+LAHC maneja tres productos de vida en esta cartera de ejemplo:
+<strong>Temporal</strong>, <strong>Dotal Mixto</strong> y <strong>Vitalicio</strong>.
+.
+</p>
+
+<div class="cards-grid">
+<article class="card">
+<span class="badge">Protección por plazo</span>
+<h3>Seguro Temporal</h3>
+<p>
+Cobertura de vida por un periodo definido. Pensado para proteger
+compromisos financieros o metas de corto y mediano plazo.
+</p>
+<ul>
+<li>Cobertura durante los años que necesites.</li>
+<li>Paga la suma asegurada solo si el fallecimiento ocurre en el plazo.</li>
+<li>Generalmente prima más accesible.</li>
+</ul>
+<p class="card-footer-text">
+Útil para créditos, estudios o etapas específicas de la vida.
+</p>
+</article>
+
+<article class="card">
+<span class="badge">Protección + ahorro</span>
+<h3>Seguro Dotal Mixto</h3>
+<p>
+Combina protección por fallecimiento con un beneficio por supervivencia
+al final del plazo. Reúne el concepto de seguro y de ahorro a largo plazo.
+</p>
+<ul>
+<li>Plazo definido, por ejemplo 20 años.</li>
+<li>Suma asegurada si falleces o si llegas vivo al final.</li>
+<li>Ideal para metas de ahorro planificadas.</li>
+</ul>
+<p class="card-footer-text">
+Producto clásico en carteras de vida con componente de ahorro.
+</p>
+</article>
+
+<article class="card">
+<span class="badge">Vida entera</span>
+<h3>Seguro Vitalicio</h3>
+<p>
+Cobertura durante toda la vida del asegurado. Garantiza que los
+beneficiarios reciban la suma asegurada sin límite de plazo.
+</p>
+<ul>
+<li>Vigencia hasta edades avanzadas.</li>
+<li>Prima nivelada para toda la vida.</li>
+<li>Enfoque en protección permanente a la familia.</li>
+</ul>
+<p class="card-footer-text">
+Producto de largo plazo usado para sucesión patrimonial.
+</p>
+</article>
+</div>
+</section>
+
+<!-- SEGURO IDEAL -->
+<section id="seguro-ideal">
+<h2>Encuentra tu seguro ideal</h2>
+<p class="section-intro">
+Contesta estas preguntas rápidas y te sugerimos cuál de los productos LAHC
+se adapta mejor a tu objetivo principal.
+
+<div class="question-grid">
+<div>
+<label for="edad">¿Cuál es tu rango de edad?</label>
+<select id="edad">
+<option value="">Selecciona una opción</option>
+<option value="joven">18 - 30 años</option>
+<option value="adulto">31 - 45 años</option>
+<option value="maduro">46 - 60 años</option>
+<option value="senior">Más de 60 años</option>
+</select>
+</div>
+
+<div>
+<label for="objetivo">¿Qué buscas principalmente?</label>
+<select id="objetivo">
+<option value="">Selecciona una opción</option>
+<option value="proteccion">Protección para mi familia</option>
+<option value="ahorro">Ahorro + protección</option>
+<option value="temporal">Cobertura solo por unos años</option>
+</select>
+</div>
+
+<div>
+<label for="plazo">¿Por cuánto tiempo quieres el seguro?</label>
+<select id="plazo">
+<option value="">Selecciona una opción</option>
+<option value="corto">Hasta 10 años</option>
+<option value="medio">11 - 20 años</option>
+<option value="largo">Más de 20 años / toda la vida</option>
+</select>
+</div>
+</div>
+
+<button class="btn-primary" id="btn-recomendar">Ver recomendación</button>
+
+<div class="result-box" id="resultado-ideal">
+<div class="result-title" id="resultado-titulo"></div>
+<div id="resultado-texto"></div>
+</div>
+</section>
+
+<!-- COTIZADOR ACTUARIAL -->
+<section id="cotizador">
+<h2>Simula tu prima neta única</h2>
+<p class="section-intro">
+Ingresa tus datos, LAHC los usamos para calcular
+una <strong>prima neta única</strong> y una <strong>prima anual </strong>
+para que tengas una cotización simulada.
+</p>
+
+<div class="question-grid">
+<div>
+<label for="tipo-seguro-cot">Tipo de seguro</label>
+<select id="tipo-seguro-cot">
+<option value="">Selecciona una opción</option>
+<option value="temporal">Temporal</option>
+<option value="dotal">Dotal mixto</option>
+<option value="vitalicio">Vitalicio</option>
+</select>
+</div>
+
+<div>
+<label for="edad-cot">Edad del asegurado</label>
+<input type="number" id="edad-cot" min="18" max="80" placeholder="Ej. 35">
+</div>
+
+<div>
+<label for="genero-cot">Género</label>
+<select id="genero-cot">
+<option value="">Selecciona</option>
+<option value="m">Masculino</option>
+<option value="f">Femenino</option>
+</select>
+</div>
+
+<div>
+<label for="status-cot">Estatus</label>
+<select id="status-cot">
+<option value="">Selecciona</option>
+<option value="std">Fumador</option>
+<option value="nf">No fumador (ajuste -2 años)</option>
+</select>
+</div>
+
+<div>
+<label for="suma-cot">Suma asegurada (MXN)</label>
+<input type="number" id="suma-cot" step="10000" placeholder="Ej. 500000">
+</div>
+
+<div>
+<label for="plazo-cot">Plazo (años)</label>
+<input type="number" id="plazo-cot" min="5" max="40" placeholder="Ej. 20">
+<small style="font-size:0.75rem;color:#777;">
+Para vitalicio se ignora y se usa la tabla completa.
+</small>
+</div>
+
+<div>
+<label for="interes-cot">Tasa de interés técnica</label>
+<input type="number" id="interes-cot" step="0.005" value="0.03">
+<small style="font-size:0.75rem;color:#777;">
+Ejemplo: 0.03 para 3% anual.
+</small>
+</div>
+</div>
+
+<button class="btn-primary" id="btn-calcular-prima">Calcular prima simulada</button>
+
+<div class="result-box" id="resultado-prima">
+<div class="result-title">Resultado de la simulación</div>
+<div id="texto-prima"></div>
+</div>
+</section>
+
+<!-- CONTRATACIÓN SIMULADA -->
+<section id="contrata">
+<h2>Contrata tu seguro </h2>
+<p class="section-intro">
+Completa este formulario con tus datos para que seas contactado por uno de nuestros agentes. Una vez en contacto, se validaría información y se
+emitiría la póliza.
+</p>
+
+<form id="form-contrato">
+<div>
+<label for="nombre">Nombre completo</label>
+<input type="text" id="nombre" required placeholder="Ej. Juan Pérez">
+</div>
+
+<div>
+<label for="correo">Correo electrónico</label>
+<input type="email" id="correo" required placeholder="lifeandhealt.com">
+</div>
+
+<div>
+<label for="telefono">Teléfono</label>
+<input type="tel" id="telefono" required placeholder="10 dígitos">
+</div>
+
+<div>
+<label for="nacimiento">Fecha de nacimiento</label>
+<input type="date" id="nacimiento" required>
+</div>
+
+<div>
+<label for="tipo-seguro">Tipo de seguro</label>
+<select id="tipo-seguro" required>
+<option value="">Selecciona un producto</option>
+<option value="vitalicio">Vida Vitalicio</option>
+<option value="dotal">Dotal Mixto</option>
+<option value="temporal">Temporal</option>
+</select>
+</div>
+
+<div>
+<label for="suma">Suma asegurada</label>
+<select id="suma">
+<option value="200000">200,000</option>
+<option value="500000">500,000</option>
+<option value="1000000">$1,000,000</option>
+</select>
+</div>
+
+<div class="full-width">
+<label for="comentarios">Comentarios adicionales (opcional)</label>
+<textarea id="comentarios" rows="3" placeholder="Ej. Quiero cubrir crédito hipotecario, estudios, etc."></textarea>
+</div>
+
+<div class="full-width">
+<button type="submit" class="btn-primary">Enviar datos</button>
+</div>
+</form>
+
+<div class="success-message" id="mensaje-exito">
+¡Listo! Hemos recibido tu solicitud <strong></strong> de seguro LAHC.
+Un asesor te contactaría para validar datos, explicar
+condiciones y emitir la póliza.
+</div>
+</section>
+</main>
+
+<footer>
+<p>Cuidamos de ti · <span>LAHC - Life And Health Company</span></p>
+</footer>
+
+<script>
+/* ========= PARTE 1: "SEGURO IDEAL" ========= */
+const btnRecomendar = document.getElementById('btn-recomendar');
+const resultadoBox = document.getElementById('resultado-ideal');
+const resultadoTitulo = document.getElementById('resultado-titulo');
+const resultadoTexto = document.getElementById('resultado-texto');
+
+btnRecomendar.addEventListener('click', () => {
+const edad = document.getElementById('edad').value;
+const objetivo = document.getElementById('objetivo').value;
+const plazo = document.getElementById('plazo').value;
+
+if (!edad || !objetivo || !plazo) {
+resultadoTitulo.textContent = "Faltan datos";
+resultadoTexto.textContent = "Por favor responde las tres preguntas para poder sugerirte un seguro.";
+resultadoBox.style.display = "block";
+return;
+}
+
+let titulo = "";
+let texto = "";
+
+if (objetivo === "ahorro") {
+titulo = "Te sugerimos: Seguro Dotal Mixto";
+texto = "El Dotal Mixto combina protección en caso de fallecimiento con un beneficio por supervivencia al final del plazo, ideal para metas de ahorro y protección.";
+} else if (objetivo === "temporal" || plazo === "corto") {
+titulo = "Te sugerimos: Seguro Temporal";
+texto = "El Seguro Temporal ofrece una protección fuerte durante un periodo definido, útil para créditos, estudios o metas específicas.";
+} else {
+titulo = "Te sugerimos: Seguro de Vida Vitalicio";
+texto = "El Seguro Vitalicio te protege toda la vida, ideal si quieres dejar un respaldo permanente a tus beneficiarios.";
+}
+
+resultadoTitulo.textContent = titulo;
+resultadoTexto.textContent = texto;
+resultadoBox.style.display = "block";
+});
+
+/* ========= PARTE 2: MODELO ACTUARIAL SIMPLIFICADO ========= */
+// Tabla de qx de EJEMPLO (puedes ajustarla con datos de tu Excel)
+const qxTable = {
+0: 0.000433,
+1: 0.000433,
+2: 0.000434,
+3: 0.000434,
+4: 0.000435,
+5: 0.000436,
+6: 0.000438,
+7: 0.000440,
+8: 0.000443,
+9: 0.000446,
+10: 0.000449,
+11: 0.000453,
+12: 0.000457,
+13: 0.000463,
+14: 0.000468,
+15: 0.000475,
+16: 0.000482,
+17: 0.000489,
+18: 0.000498,
+19: 0.000507,
+20: 0.000517,
+21: 0.000528,
+22: 0.000540,
+23: 0.000553,
+24: 0.000567,
+25: 0.000582,
+26: 0.000598,
+27: 0.000616,
+28: 0.000635,
+29: 0.000656,
+30: 0.000678,
+31: 0.000703,
+32: 0.000729,
+33: 0.000757,
+34: 0.000788,
+35: 0.000821,
+36: 0.000857,
+37: 0.000896,
+38: 0.000938,
+39: 0.000983,
+40: 0.001033,
+41: 0.001087,
+42: 0.001145,
+43: 0.001208,
+44: 0.001278,
+45: 0.001353,
+46: 0.001435,
+47: 0.001525,
+48: 0.001623,
+49: 0.001730,
+50: 0.001848,
+51: 0.001977,
+52: 0.002119,
+53: 0.002274,
+54: 0.002446,
+55: 0.002635,
+56: 0.002844,
+57: 0.003074,
+58: 0.003329,
+59: 0.003612,
+60: 0.003926,
+61: 0.004275,
+62: 0.004664,
+63: 0.005096,
+64: 0.005579,
+65: 0.006119,
+66: 0.006723,
+67: 0.007400,
+68: 0.008160,
+69: 0.009015,
+70: 0.009977,
+71: 0.011061,
+72: 0.012285,
+73: 0.013668,
+74: 0.015235,
+75: 0.017009,
+76: 0.019024,
+77: 0.021312,
+78: 0.023915,
+79: 0.026879,
+80: 0.030257,
+81: 0.034110,
+82: 0.038509,
+83: 0.043533,
+84: 0.049274,
+85: 0.055833,
+86: 0.063329,
+87: 0.071889,
+88: 0.081660,
+89: 0.092798,
+90: 0.105476,
+91: 0.119875,
+92: 0.136184,
+93: 0.154594,
+94: 0.175291,
+95: 0.198441,
+96: 0.224184,
+97: 0.252613,
+98: 0.283760,
+99: 0.317576,
+100: 0.353919,
+101: 0.392540,
+102: 0.433078,
+103: 0.475068,
+104: 0.517949,
+105: 0.561099,
+106: 0.603861,
+107: 0.645589,
+108: 0.685682,
+109: 0.723620,
+110: 0.758991
+};
+
+function BqxJS(edad) {
+const e = Math.floor(edad);
+return qxTable[e] !== undefined ? qxTable[e] : 0;
+}
+
+function ajustaEdad(edad, genero, status) {
+let edadcontrato = edad;
+if (genero.toLowerCase() === "f") edadcontrato -= 3;
+if (status.toLowerCase() === "nf") edadcontrato -= 2;
+return edadcontrato;
+}
+
+function calculoPnuTemporal(edad, genero, status, suma, plazo, interes) {
+const V = 1 / (1 + interes);
+let edadc = ajustaEdad(edad, genero, status);
+let prima = 0;
+let kpx = 1;
+
+for (let k = 0; k <= plazo - 1; k++) {
+const qx = BqxJS(edadc + k);
+prima += suma * Math.pow(V, k + 1) * kpx * qx;
+kpx *= (1 - qx);
+}
+return prima;
+}
+
+function calculoPnuDotal(edad, genero, status, suma, plazo, interes) {
+const V = 1 / (1 + interes);
+let edadc = ajustaEdad(edad, genero, status);
+let prima = 0;
+let kpx = 1;
+
+for (let k = 0; k <= plazo - 1; k++) {
+const qx = BqxJS(edadc + k);
+prima += suma * Math.pow(V, k + 1) * kpx * qx;
+kpx *= (1 - qx);
+}
+
+// Beneficio dotal por supervivencia
+prima += suma * Math.pow(V, plazo) * kpx;
+return prima;
+}
+
+function calculoPnuVitalicio(edad, genero, status, suma, interes) {
+const V = 1 / (1 + interes);
+let edadc = ajustaEdad(edad, genero, status);
+const maxEdad = 111;
+let prima = 0;
+let kpx = 1;
+
+for (let k = 0; k <= maxEdad - edadc; k++) {
+const qx = BqxJS(edadc + k);
+prima += suma * Math.pow(V, k + 1) * kpx * qx;
+kpx *= (1 - qx);
+}
+return prima;
+}
+
+function calculoAnualidad(edad, genero, status, plazo, interes, tipo) {
+const V = 1 / (1 + interes);
+let edadc = ajustaEdad(edad, genero, status);
+let anualidad = 0;
+let kpx = 1;
+let maxK = (tipo === "vitalicio") ? (111 - edadc) : (plazo - 1);
+
+for (let k = 0; k <= maxK; k++) {
+anualidad += kpx * Math.pow(V, k);
+const qx = BqxJS(edadc + k);
+kpx *= (1 - qx);
+}
+return anualidad;
+}
+
+/* ========= PARTE 3: UI del cotizador ========= */
+const btnCalcularPrima = document.getElementById("btn-calcular-prima");
+const cajaResultadoPrima = document.getElementById("resultado-prima");
+const textoResultadoPrima = document.getElementById("texto-prima");
+
+btnCalcularPrima.addEventListener("click", () => {
+const tipo = (document.getElementById("tipo-seguro-cot").value || "").toLowerCase();
+const edad = parseFloat(document.getElementById("edad-cot").value);
+const genero = (document.getElementById("genero-cot").value || "").toLowerCase();
+const status = (document.getElementById("status-cot").value || "").toLowerCase();
+const suma = parseFloat(document.getElementById("suma-cot").value);
+const plazo = parseInt(document.getElementById("plazo-cot").value || "0", 10);
+const interes = parseFloat(document.getElementById("interes-cot").value);
+
+if (!tipo || isNaN(edad) || !genero || !status || isNaN(suma) || isNaN(interes)) {
+textoResultadoPrima.textContent = "Llena tipo de seguro, edad, género, estatus, suma asegurada e interés.";
+cajaResultadoPrima.style.display = "block";
+return;
+}
+
+if ((tipo === "temporal" || tipo === "dotal") && (isNaN(plazo) || plazo <= 0)) {
+textoResultadoPrima.textContent = "Para Temporal o Dotal debes indicar un plazo en años.";
+cajaResultadoPrima.style.display = "block";
+return;
+}
+
+let pnu = 0;
+if (tipo === "temporal") {
+pnu = calculoPnuTemporal(edad, genero, status, suma, plazo, interes);
+} else if (tipo === "dotal") {
+pnu = calculoPnuDotal(edad, genero, status, suma, plazo, interes);
+} else if (tipo === "vitalicio") {
+pnu = calculoPnuVitalicio(edad, genero, status, suma, interes);
+}
+
+const a_n = calculoAnualidad(edad, genero, status, plazo, interes, tipo);
+const primaAnual = a_n > 0 ? pnu / a_n : 0;
+
+const formato = (x) => x.toLocaleString("es-MX", {
+style: "currency",
+currency: "MXN",
+maximumFractionDigits: 2
+});
+
+textoResultadoPrima.innerHTML = `
+<p><strong>Tipo de seguro:</strong> ${tipo.toUpperCase()}</p>
+<p><strong>Prima neta única simulada:</strong> ${formato(pnu)}</p>
+<p><strong>Prima anual neta nivelada (aprox.):</strong> ${formato(primaAnual)}</p>
+<p style="font-size:0.8rem;color:#555;margin-top:0.4rem;">
+Nota: Las cantidades del simulador pueden variar a la hora de su contratación.
+</p>
+`;
+cajaResultadoPrima.style.display = "block";
+});
+
+/* ========= PARTE 4: Formulario de contratación ========= */
+const formContrato = document.getElementById('form-contrato');
+const mensajeExito = document.getElementById('mensaje-exito');
+
+formContrato.addEventListener('submit', (event) => {
+event.preventDefault();
+mensajeExito.style.display = "block";
+});
+</script>
+
+</body>
+</html>
